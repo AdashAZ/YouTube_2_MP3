@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube MP3 Downloader</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
+        <pre class="text-red-600 text-center font-mono text-sm mb-4">
+█░░█ █▀▀█ █░░█ ▀▀█▀▀ █░░█ █▀▀▄ █▀▀   █▀▀▄ █▀▀█ █░░░█ █▀▀▄ █░░ █▀▀█ █▀▀█ █▀▀▄ █▀▀ █▀▀█
+█▄▄█ █░░█ █░░█ ░░█░░ █░░█ █▀▀▄ █▀▀   █░░█ █░░█ █▄█▄█ █░░█ █░░ █░░█ █▄▄█ █░░█ █▀▀ █▄▄▀
+▄▄▄█ ▀▀▀▀ ░▀▀▀ ░░▀░░ ░▀▀▀ ▀▀▀░ ▀▀▀   ▀▀▀░ ▀▀▀▀ ░▀░▀░ ▀░░▀ ▀▀▀ ▀▀▀▀ ▀░░▀ ▀▀▀░ ▀▀▀ ▀░▀▀
+        </pre>
+        <p class="text-green-600 text-center mb-2">V2 BY MENTAL</p>
+        <p class="text-blue-600 text-center mb-4">
+            <a href="https://github.com/Silvano-Hirtie/youtube-mp3-v2" target="_blank">Github</a> | 
+            <a href="https://discord.gg/BgjwgWx" target="_blank">Contact on Discord</a>
+        </p>
+        <h1 class="text-2xl font-bold text-center mb-6">YouTube Audio Downloader</h1>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4">
+                    {% for message in messages %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+        <form method="POST" class="space-y-4">
+            <div>
+                <label for="url" class="block text-sm font-medium text-gray-700">YouTube URL</label>
+                <input type="text" name="url" id="url" placeholder="Paste YouTube video or playlist URL" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+            </div>
+            <div>
+                <label for="format" class="block text-sm font-medium text-gray-700">Audio Format</label>
+                <select name="format" id="format" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    {% for fmt in formats %}
+                        <option value="{{ fmt }}">{{ fmt.upper() }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div>
+                <label for="quality" class="block text-sm font-medium text-gray-700">Audio Quality (kbps)</label>
+                <select name="quality" id="quality" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    {% for qual in qualities %}
+                        <option value="{{ qual }}">{{ qual }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="w-full bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700 transition">Download</button>
+        </form>
+    </div>
+</body>
+</html>
